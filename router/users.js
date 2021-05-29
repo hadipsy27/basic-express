@@ -19,8 +19,17 @@ router.route('/users')
   })
 
 router.put('/users/:id', function(req, res){
-  const id = req.params
-  res.send(id)
+  const id = req.params.id
+  users.filter(user => {
+    if(user.id == id){
+      user.id = id,
+      user.name = req.body.name,
+      user.email = req.body.email
+
+      return user
+    }
+  })
+  res.json(users)
 })
 
 router.delete('/users/:userId', function(req, res){
