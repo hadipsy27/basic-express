@@ -2,13 +2,13 @@ const express = require('express')
 const router = express.Router()
 
 let users = [
-  {id: 1, name: "Hadi Prasetyo", email: "hadipsy27@gmail.com"},
-  {id: 2, name: "Andi Suryanto", email: "andi@gmail.com"}
+  // {id: 1, name: "Hadi Prasetyo", email: "hadipsy27@gmail.com"},
+  // {id: 2, name: "Andi Suryanto", email: "andi@gmail.com"}
 ]
 
 router.route('/users')
   .get(function(req, res){
-    if(users.length > 0){
+    if(users.length > null){
       res.json({
         status: true,
         data: users,
@@ -56,6 +56,7 @@ router.put('/users/:id', function(req, res){
 router.delete('/users/:userId', function(req, res){
   // res.send(req.params.userId)
   let id = req.params.userId
+  // jika id user tidak sama maka tidak di filter, jika sama maka difilter(di hapus)
   users = users.filter(user => user.id != id) // jika id user sama maka di hapus(di filter), jika beda maka di biarkan
   res.send({
     status: true,
