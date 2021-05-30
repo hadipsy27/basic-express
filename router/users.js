@@ -33,7 +33,10 @@ router.put('/users/:id', function(req, res){
 })
 
 router.delete('/users/:userId', function(req, res){
-  res.send(req.params.userId)
+  // res.send(req.params.userId)
+  let id = req.params.userId
+  users = users.filter(user => user.id != id) // jika id user sama maka di hapus(di filter), jika beda maka di biarkan 
+  res.send(users)
 })
 
 module.exports = router
