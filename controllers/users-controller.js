@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require('uuid')
+
 let users = [
   {id: 1, name: "Hadi Prasetyo", email: "hadipsy27@gmail.com"},
   {id: 2, name: "Andi Suryanto", email: "andi@gmail.com"}
@@ -23,16 +25,27 @@ module.exports = {
     //   })
     // }
   },
+  create: function (req, res) {
+    res.render('pages/users/create')
+  },
   store: function(req, res){
-    users.push(req.body)
-    res.json({
-      status: true,
-      data: users,
-      message: "Data User berhasil ditambahkan sob!",
-      method: req.method,
-      url: req.url,
-      date: req.time
+    users.push({
+      id: uuidv4(),
+      name: req.body.name,
+      email: req.body.email      
     })
+
+    res.json(users)
+    //------------------------------------------
+    // users.push(req.body)
+    // res.json({
+    //   status: true,
+    //   data: users,
+    //   message: "Data User berhasil ditambahkan sob!",
+    //   method: req.method,
+    //   url: req.url,
+    //   date: req.time
+    // })
   },
   update: function(req, res){
     const id = req.params.id
