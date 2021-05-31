@@ -5,21 +5,23 @@ let users = [
 
 module.exports = {
   index: function(req, res){
-    if(users.length > null){
-      res.json({
-        status: true,
-        data: users,
-        method: req.method,
-        url: req.url,
-        date: req.time
-      })
-    } else{
-      res.json({
-        status: false,
-        message: "Data Users masih kosong sob!",
-        date: req.time
-      })
-    }
+    res.render('pages/users/index', {users})
+    // ---------------------------------
+    // if(users.length > null){
+    //   res.json({
+    //     status: true,
+    //     data: users,
+    //     method: req.method,
+    //     url: req.url,
+    //     date: req.time
+    //   })
+    // } else{
+    //   res.json({
+    //     status: false,
+    //     message: "Data Users masih kosong sob!",
+    //     date: req.time
+    //   })
+    // }
   },
   store: function(req, res){
     users.push(req.body)
