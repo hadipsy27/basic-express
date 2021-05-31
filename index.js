@@ -15,7 +15,7 @@ let dataDate = function(req, res, next){
 app.use(dataDate)
 
 app.set('view engine', 'ejs')
-app.use('/assets', express.static('public'))
+app.use(express.static('public'))
 
 app.get('/', function(req, res){
   const kelas = {
