@@ -11,9 +11,13 @@
   <%- include('../components/navbar') %>
   <h2>Data Users </h2>
   <ul>
-    <% users.forEach(function (user) { %>
-      <li><%= user.name %></li>
-    <% }) %>
+    <% if(users.length > 0) { %>
+      <% users.forEach(function (user) { %>
+        <li><%= user.name %></li>
+      <% }) %>
+    <% }else { %>
+      <li>Data Users kosong sob...</li>
+    <% } %>
   </ul>
 
   <%- include('../components/footer') %>
