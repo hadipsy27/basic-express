@@ -25,6 +25,18 @@ module.exports = {
     //   })
     // }
   },
+  show: function (req, res) {
+    // res.send(req.params.id)
+    const id = req.params.id
+    const dataUser = users.filter(user => {
+      return user.id == id
+    })
+
+    // res.send(dataUser) // json
+    // console.log(dataUser[0])
+    res.render('pages/users/show', {userData: dataUser})
+    res.end()
+  },
   create: function (req, res) {
     res.render('pages/users/create')
   },
@@ -35,7 +47,8 @@ module.exports = {
       email: req.body.email      
     })
 
-    res.json(users)
+    // res.send(users) // json
+    res.redirect('/users')
     //------------------------------------------
     // users.push(req.body)
     // res.json({

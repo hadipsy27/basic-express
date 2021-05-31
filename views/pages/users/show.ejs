@@ -9,20 +9,14 @@
 </head>
 <body>
   <%- include('../components/navbar') %>
-  <h2>Data Users (<%= users.length %>)</h2>
+  
+  <h2>Detail User</h2>
   <ul>
-    <% if(users.length > 0) { %>
-      <% users.forEach(function (user) { %>
-        <li>
-          <a style="color: blue !important; text-decoration: none;" 
-          href="/users/<%= user.id %>"><%= user.name %></a>
-        </li>
-      <% }) %>
-    <% }else { %>
-      <li>Data Users kosong sob...</li>
-    <% } %>
+    <li>Nama: <strong><%= userData[0].name %></strong></li>
+    <li>Email: <strong><%= userData[0].email %> </strong></li>
   </ul>
-
+  <a href="/users">Kembali</a>
+  
   <%- include('../components/footer') %>
 </body>
 </html>
