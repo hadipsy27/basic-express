@@ -13,6 +13,7 @@ let dataDate = function(req, res, next){
 app.use(dataDate)
 
 app.set('view engine', 'ejs')
+app.use('/assets', express.static('public'))
 
 app.get('/', function(req, res){
   const kelas = {
@@ -21,12 +22,11 @@ app.get('/', function(req, res){
     date: req.time
   }
   // res.json(kelas)
-  res.render('index', {kelas: kelas})
+  res.render('pages/index', {kelas: kelas})
 })
 
 app.get('/about', function(req, res){
-  // res.redirect('/users')
-  res.redirect('https://expressjs.com/')
+  res.render('pages/about')
 })
 
 app.use(userRouter)
