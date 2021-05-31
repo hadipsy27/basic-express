@@ -10,12 +10,14 @@ module.exports = {
         status: true,
         data: users,
         method: req.method,
-        url: req.url
+        url: req.url,
+        date: req.time
       })
     } else{
       res.json({
         status: false,
-        message: "Data Users masih kosong sob!"
+        message: "Data Users masih kosong sob!",
+        date: req.time
       })
     }
   },
@@ -26,7 +28,8 @@ module.exports = {
       data: users,
       message: "Data User berhasil ditambahkan sob!",
       method: req.method,
-      url: req.url
+      url: req.url,
+      date: req.time
     })
   },
   update: function(req, res){
@@ -45,7 +48,8 @@ module.exports = {
       data: users,
       message: "Data User berhasil diedit sob!",
       method: req.method,
-      url: req.url
+      url: req.url,
+      date: req.time
     })
   },
   delete: function(req, res){
@@ -58,7 +62,8 @@ module.exports = {
       data: users,
       message: "Data User berhasil dihapus sob!",
       method: req.method,
-      url: req.url
+      url: req.url,
+      date: req.time
     })
   }
 

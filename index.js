@@ -5,10 +5,18 @@ const app = express()
 app.use(express.json()) // for parshing/json
 app.use(express.urlencoded({ extended: true })) // for parshing application/x-www-form-urlencoded
 
+let dataDate = function(req, res, next){
+  req.time = new Date().toString()
+  next()
+}
+
+app.use(dataDate)
+
 app.get('/', function(req, res){
   const kelas = {
     id: 1,
-    nama: "Nodejs"
+    nama: "Nodejs",
+    date: req.time
   }
   res.json(kelas)
 })
