@@ -12,13 +12,16 @@ let dataDate = function(req, res, next){
 
 app.use(dataDate)
 
+app.set('view engine', 'ejs')
+
 app.get('/', function(req, res){
   const kelas = {
     id: 1,
     nama: "Nodejs",
     date: req.time
   }
-  res.json(kelas)
+  // res.json(kelas)
+  res.render('index', {kelas: kelas})
 })
 
 app.get('/about', function(req, res){
