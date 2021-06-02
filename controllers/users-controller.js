@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid')
-const user = require('../models/users-model')
+const User = require('../models/users-model')
 
 let users = [
   {id: 1, name: "Hadi Prasetyo", email: "hadipsy27@gmail.com"},
@@ -42,14 +42,26 @@ module.exports = {
     res.render('pages/users/create')
   },
   store: function(req, res){
-    users.push({
-      id: uuidv4(),
+    const user = new User({ // instan object dari model User
       name: req.body.name,
-      email: req.body.email      
+      email: req.body.email,
+      password: req.body.password
     })
-
-    // res.send(users) // json
+    user.save(function(err, res){
+      if(err){
+        console.log(err)
+      } else {
+        console.log(res)
+      }
+    })
     res.redirect('/users')
+
+    // users.push({
+    //   id: uuidv4(),
+    //   name: req.body.name,
+    //   email: req.body.email      
+    // })
+    // res.redirect('/users')
     //------------------------------------------
     // users.push(req.body)
     // res.json({
