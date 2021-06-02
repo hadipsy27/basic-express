@@ -6,6 +6,15 @@ const port = 3000
 app.use(express.json()) // for parshing/json
 app.use(express.urlencoded({ extended: true })) // for parshing application/x-www-form-urlencoded
 
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/bassicdb',{useNewUrlParser: true, useUnifiedTopology: true})
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("Server mongoDb Success")
+});
+
 // middleware
 let dataDate = function(req, res, next){
   req.time = new Date().toString()

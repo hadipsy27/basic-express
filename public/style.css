@@ -2,3 +2,8 @@ body{
   font-family: sans-serif;
   margin: 15%;
 }
+
+.navbar > a{
+  text-decoration: none !important;
+  
+}
