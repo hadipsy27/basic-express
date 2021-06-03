@@ -42,6 +42,7 @@ module.exports = {
     res.render('pages/users/create')
   },
   store: function(req, res){
+
     const user = new User({ // instan object dari model User
       name: req.body.name,
       email: req.body.email,
@@ -56,6 +57,19 @@ module.exports = {
     })
     res.redirect('/users')
 
+    User.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password
+    }, function(err, res){
+      if(err){
+        console.log(err)
+      } else {
+        console.log(res)
+      }
+    })
+
+    // ------------------------------
     // users.push({
     //   id: uuidv4(),
     //   name: req.body.name,
