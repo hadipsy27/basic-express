@@ -1,42 +1,35 @@
 const { v4: uuidv4 } = require('uuid')
 const User = require('../models/users-model')
 
-let users = [
-  {id: 1, name: "Hadi Prasetyo", email: "hadipsy27@gmail.com"},
-  {id: 2, name: "Andi Suryanto", email: "andi@gmail.com"}
-]
+// let users = [
+//   {id: 1, name: "Hadi Prasetyo", email: "hadipsy27@gmail.com"},
+//   {id: 2, name: "Andi Suryanto", email: "andi@gmail.com"}
+// ]
 
 module.exports = {
   index: function(req, res){
-    res.render('pages/users/index', {users})
-    // ---------------------------------
-    // if(users.length > null){
-    //   res.json({
-    //     status: true,
-    //     data: users,
-    //     method: req.method,
-    //     url: req.url,
-    //     date: req.time
-    //   })
-    // } else{
-    //   res.json({
-    //     status: false,
-    //     message: "Data Users masih kosong sob!",
-    //     date: req.time
-    //   })
-    // }
+    User.find(function(error, users){
+      if(error){
+        console.log(error)
+      } else {
+        res.render('pages/users/index', {users})
+      }
+    })
   },
   show: function (req, res) {
     // res.send(req.params.id)
     const id = req.params.id
-    const dataUser = users.filter(user => {
-      return user.id == id
+    // const dataUser = users.filter(user => {
+    //   return user.id == id
+    // })
+    User.findById(id, function(err, data){
+      if(err){
+        console.log(err)
+      }else {
+        console.log(data)
+        res.render('pages/users/show', {user: data})
+      }
     })
-
-    // res.send(dataUser) // json
-    // console.log(dataUser[0])
-    res.render('pages/users/show', {userData: dataUser})
-    res.end()
   },
   create: function (req, res) {
     res.render('pages/users/create')
