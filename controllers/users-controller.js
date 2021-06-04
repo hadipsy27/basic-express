@@ -13,13 +13,26 @@ module.exports = {
     if(req.query.keyword){
       key = {name: {$regex: req.query.keyword}} // hasil regex = /mia/
     }
-    User.find(key, "name _id",function(error, users){
-      if(error){
-        console.log(error)
-      } else {
-        res.render('pages/users/index', {users})
-      }
-    })
+    // Cara pertama ------------------------------------
+    // User.find(key, "name _id",function(error, users){
+    //   if(error){
+    //     console.log(error)
+    //   } else {
+    //     res.render('pages/users/index', {users})
+    //   }
+    // })
+    // Cara kedua ------------------------------------
+    const query = User.find(key)
+    query
+      .select("name _id")
+      .exec(function(error, users){
+        if(error){
+          console.log(error)
+        } else {
+          console.log(users);
+          res.render('pages/users/index', {users})
+        }
+      })
   },
   show: function (req, res) {
     // res.send(req.params.id)
