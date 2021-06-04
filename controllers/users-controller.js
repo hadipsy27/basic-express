@@ -8,7 +8,12 @@ const User = require('../models/users-model')
 
 module.exports = {
   index: function(req, res){
-    User.find(function(error, users){
+    let key = {}
+
+    if(req.query.keyword){
+      key = {name: {$regex: req.query.keyword}} // hasil regex = /mia/
+    }
+    User.find(key, "name _id",function(error, users){
       if(error){
         console.log(error)
       } else {

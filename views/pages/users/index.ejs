@@ -10,12 +10,16 @@
 <body>
   <%- include('../components/navbar') %>
   <h2>Data Users (<%= users.length %>)</h2>
+  <form action="/users" method="get">
+    <input type="text" name="keyword">
+    <button type="submit">Cari</button>
+  </form>
   <ul>
     <% if(users.length > 0) { %>
       <% users.forEach(function (user) { %>
         <li>
-          <a style="color: blue !important; text-decoration: none;" 
-          href="/users/<%= user.id %>"><%= user.name %></a>
+          <a style="color: blue !important; text-decoration: none;"
+          href="/users/<%= user._id %>"> <%= user.name %> </a>
         </li>
       <% }) %>
     <% }else { %>
